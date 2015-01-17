@@ -272,10 +272,11 @@ bindkey '^Xh' zsh-history
 REPORTTIME=10
 
 
-perl -wle \
+if [ -e $HOME/.emacs.d/shellenv.el ]; then
+  perl -wle \
     'do { print qq/(setenv "$_" "$ENV{$_}")/ if exists $ENV{$_} } for @ARGV' \
     PATH > ~/.emacs.d/shellenv.el
-
+fi
 
 function chpwd() { ls -F }
 
@@ -404,7 +405,7 @@ k2h()
 # $ brew install ghq
 #
 
-if [ `which peco` ]; then
+if type peco > /dev/null 2>&1; then
     setopt hist_ignore_all_dups
     function peco_select_history() {
         local tac
@@ -422,6 +423,3 @@ if [ `which peco` ]; then
 else
     echo "peco is not found."
 fi
-
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
