@@ -1,10 +1,9 @@
-#/bin/sh
+#/bin/zsh
 source $HOME/.zsh.d/zshrc.antigen
 
 autoload -Uz add-zsh-hook
 autoload -Uz colors
 colors
-
 
 ############################################################
 # ヒストリ
@@ -70,12 +69,12 @@ zstyle ':completion:*:git' command 'git --no-pager log -n 10 --pretty=format:"%h
 ############################################################
 
 local GREEN=$'%F{green}'
+local RED=$'%F{red}'
 local BLUE=$'%F{blue}'
 local DEFAULT=$'%{\e[1;m%}'
 local VCS='%1(v|%F{yellow}%1v%F{green} |)'
 
-PROMPT="%F{green}[%n@%m]
-[%h] (%j) %f$DEFAULT%(!.#.$) "
+PROMPT=$RED"%(!.#.$) "$DEFAULT
 RPROMPT=$GREEN"$VCS [%~]"$DEFAULT
 SPROMPT="correct: %R -> %r ? " 
 
@@ -124,6 +123,7 @@ setopt cdable_vars
 setopt sh_word_split
 setopt auto_param_keys
 setopt pushd_ignore_dups
+setopt completealiases
 
 # ディレクトリスタック
 DIRSTACKSIZE=100
@@ -138,44 +138,16 @@ zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
 
 # Alias
 
-if [ `hostname` = "anor.local" ]; then
-alias ll='ls -lG'
-alias ls='ls -G'
-
-else
-alias ls='ls -F --color=auto'
-alias la='ls -a --color=auto'
-alias ll='ls -la --color=auto'
-fi
-
-#alias firefox='firefox-bin'
-
-alias tmux-choose-buffer="tmux list-buffers | percol | sed -E 's/^([0-9]*):.*$/\1/g' | xargs -I{} tmux save-buffer -b {} - | reattach-to-user-namespace pbcopy"
-
 alias glgg='git logg'
 alias glg='git logg | head'
 alias gst='git status -s -b'
 alias gd='git diff --color -w'
-#alias emacs='emacs -nw'
-#alias em='emacsclient --tty'
-#alias g='git'
-#alias screen='tscreen'
-#alias xdvi='pxdvi'
-#alias dvips='pdvips'
-#alias r=rails
-
 alias gst='git status -s -b'
+
 # Suffix Alias
-alias -s pdf=evince
-alias -s dvi=pxdvi
-alias -s eps=display
-alias -s zip=unzip
 alias -s tar.gz="tar xvzf"
 alias -s tar.bz="tar xvjf"
-
 alias -s lg='| grep'
-
-alias kitchen='nocorrect kitchen'
 
 ############################################################
 # キーバインド
@@ -189,88 +161,7 @@ bindkey "\M-C-b" backward-word
 bindkey '\M-w' backward-kill-word
 
 
-# ウィンドウタイトルを変更する
-# コマンド実行中：コマンド名
-# それ以外：USER@HOSTNAME
-# case "${TERM}" in screen)
-# 		preexec() {
-# 			echo -ne "\ek#${1%% *}\e\\"
-# 		}
-# 		precmd() {
-# 			echo -ne "\ek${USER}@$(hostname)\e\\"
-# 		}
-# esac
-
-
-## Invoke the ``dired'' of current working directory in Emacs buffer.
-function dired () {
-	emacsclient -e "(dired \"$PWD\")"
-}
-
-## Chdir to the ``default-directory'' of currently opened in Emacs buffer.
-function cde () {
-	EMACS_CWD=`emacsclient -e "
-		(expand-file-name
-		 (with-current-buffer
-		  (nth 1
-		   (assoc 'buffer-list
-		    (nth 1 (nth 1 (current-frame-configuration)))))
-		  default-directory))" | sed 's/^"\(.*\)"$/\1/'`
-
-		echo "chdir to $EMACS_CWD"
-		cd "$EMACS_CWD"
-}
-
-# 実行したコマンド名をfluentdに投げる
-if [ `hostname` = "turris" ]; then
-  function preexec_fluent() {
-      hn=`hostname | tr -d '\n'`
-      curl -X POST -d 'json={"hostname":"'$hn'", "command":"'${1%% *}'"}' localhost:24224/zsh
-  }
-fi
-# preexec_functions=(preexec_fluent)
-
-# tmuxの中でsshを実行した場合，新しくウィンドウを作成する
-#if [ $TERM = screen ]; then
-#	function ssh_tmux() {
-#	 	eval server=\${$#}
- #	 	tmux new-window -n $@ "exec ssh $@"
-#	}
-#	alias ssh_=ssh
-#	alias ssh=ssh_tmux
-#fi
-
-
-# tmuxの中でmanを実行した場合，新しくペインを作成する
-if [ $TERM = screen ]; then
-	function man_tmux() {
-	 	eval server=\${$#}
- 	 	tmux split-window "exec man $@"
-	}
-	#alias man_=man
-	#alias man=man_tmux
-fi
-
-
-if [ `hostname` = "turris" ]; then
-    # preexec() {
-    #     ruby ${HOME}/bin/cmd_logger.rb "$1" &!
-    # }
-    . /home/takaishi_r/local/bin/z.sh
-fi
-
-#[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-
-# 
-source ~/.zsh.d/packages/zaw/zaw.zsh
-zsh-history() {
-  zaw zaw-src-history
-}
-zle -N zsh-history
-bindkey '^Xh' zsh-history
-
 REPORTTIME=10
-
 
 if [ -e $HOME/.emacs.d/shellenv.el ]; then
   perl -wle \
@@ -282,17 +173,6 @@ function chpwd() { ls -F }
 
 #bindkey -s P 'ps auxw'
 #bindkey -s G '| grep '
-#
-#
-#
-#
-#
-#
-
-
-# Source promptway.zsh
-# zstyle による設定前に読み込むこと
-#source path/to/promptway/promptway.zsh
 
 zstyle ':prompt:dir' formats "%B%a%b"
 zstyle ':prompt:dir:symlink' formats "%B%F{cyan}%a@%f%b"
@@ -337,9 +217,9 @@ zstyle ':prompt:permission:backward' formats '(%F{blue}%a%b%f)'
 zstyle ':prompt:permission:backward' non_owner_symbol '⭤'
 
 
-if [ $TERM = "screen" ]; then
-  tmux rename-window `hostname`
-fi
+#if [ $TERM = "screen" ]; then
+#  tmux rename-window `hostname`
+#fi
 
 
 # peco
@@ -353,49 +233,6 @@ function peco-pkill() {
 }
 alias pk="peco-pkill"
 
-
-b2h()
-{
-# By: Simon Sweetwater
-# Spotted Script @: http://www.linuxjournal.com/article/9293?page=0,1 
-    # Convert input parameter (number of bytes) 
-    # to Human Readable form
-    #
-    SLIST="bytes,KB,MB,GB,TB,PB,EB,ZB,YB"
-
-    POWER=1
-    VAL=$( echo "scale=2; $1 / 1" | bc)
-    VINT=$( echo $VAL / 1024 | bc )
-    while [ ! $VINT = "0" ]
-    do
-        let POWER=POWER+1
-        VAL=$( echo "scale=2; $VAL / 1024" | bc)
-        VINT=$( echo $VAL / 1024 | bc )
-    done
-
-    echo $VAL$( echo $SLIST | cut -f$POWER -d, )
-}
-
-k2h()
-{
-    # Convert input parameter (number of kilobytes) 
-# Spotted Script @: http://www.linuxjournal.com/article/9293?page=0,1 
-    # to Human Readable form
-    # MODIFIED BY kossboss
-    SLIST="bytes,KB,MB,GB,TB,PB,EB,ZB,YB"
-    POWER=1
-    VAL=$( echo "scale=2; $1 * 1024 / 1" | bc)
-    VINT=$( echo $VAL / 1024 | bc )
-    while [ ! $VINT = "0" ]
-    do
-        let POWER=POWER+1
-        VAL=$( echo "scale=2; $VAL / 1024" | bc)
-        VINT=$( echo $VAL / 1024 | bc )
-    done
-    echo $VAL$( echo $SLIST | cut -f$POWER -d, )
-}
-
-
 # zshにpeco + ghqを導入したメモ - Qiita - http://qiita.com/ysk_1031/items/8cde9ce8b4d0870a129d
 #
 # $ brew tap peco/peco
@@ -404,7 +241,6 @@ k2h()
 # $ brew tap motemen/ghq
 # $ brew install ghq
 #
-
 if type peco > /dev/null 2>&1; then
     setopt hist_ignore_all_dups
     function peco_select_history() {
@@ -423,3 +259,39 @@ if type peco > /dev/null 2>&1; then
 else
     echo "peco is not found."
 fi
+
+
+alias g='git'
+alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
+alias -g H='`curl -sL https://api.github.com/users/YOUR_USERNAME/repos | jq -r ".[].full_name" | peco --prompt "GITHUB REPOS>" | head -n 1`'
+alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOTE BRANCH>" | head -n 1 | sed "s/remotes\/[^\/]*\/\(\S*\)/\1 \0/"`'
+alias s='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|peco|awk "{print \$2}")'
+
+
+
+
+
+
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+  export PATH=${PYENV_ROOT}/bin:$PATH
+  eval "$(pyenv init -)"
+fi
+
+
+hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
+zstyle ':completion:*:hosts' hosts $hosts
+
+function s() {
+  ssh $(awk '
+    tolower($1)=="host" {
+      for (i=2; i<=NF; i++) {
+        if ($i !~ "[*?]") {
+          print $i
+        }
+      }
+    }
+  ' ~/.ssh/config | sort | peco)
+}
+# alias s='ssh $(grep -E '^Host[[:space:]]+[^*]' ~/.ssh/config|peco|awk "{print \$2}")'
