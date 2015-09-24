@@ -98,8 +98,18 @@ update_vcs_info() {
   LANG=en_US.UTF-8 vcs_info
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
+
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' formats '%r'
+
 #カレントディレクトリ変更時/git関連コマンド実行時に情報更新
 precmd() {
+
+LANG=en_US.UTF-8 vcs_info
+  [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
+
   _r=$?
   case "${_cmd}" in
     git*|stg*) update_vcs_info ;;
@@ -269,9 +279,10 @@ alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOTE BRAN
 alias s='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|peco|awk "{print \$2}")'
 
 
-
-
-
+# agで検索 => pecoで絞り込み => 該当行をvimで開く
+function agvim() {
+    vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
 
 export PYENV_ROOT="${HOME}/.pyenv"
 if [ -d "${PYENV_ROOT}" ]; then
@@ -295,3 +306,7 @@ function s() {
   ' ~/.ssh/config | sort | peco)
 }
 # alias s='ssh $(grep -E '^Host[[:space:]]+[^*]' ~/.ssh/config|peco|awk "{print \$2}")'
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
+export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10

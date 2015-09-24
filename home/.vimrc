@@ -38,3 +38,4 @@ set softtabstop=2
 set autoindent
 set smartindent
 
+syntax enable
