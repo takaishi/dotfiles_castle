@@ -28,3 +28,10 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 export GOPATH=$HOME/src
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+export SLACK_API_TOKEN=xoxp-3358917349-4267516680-18724788512-513308ca3f
+
+export DOCKER_HOST=tcp://192.168.99.100:2376
+export DOCKER_CERT_PATH=${HOME}/.docker/machine/machines/dinghy
+export DOCKER_TLS_VERIFY=1
+export DOCKER_MACHINE_NAME=dinghy
