@@ -44,15 +44,13 @@ SAVEHIST=500000
 # ヒストリにコマンド入力時刻と実行時間も記録する
 setopt EXTENDED_HISTORY
 
-function history-all {history -E 1 } #全履歴の一覧を出力
-
 ############################################################
 # 補完
 ############################################################
 
 #fpath=($HOME/.tmuxinator/completion ${fpath})
 autoload -U compinit
-compinit 
+compinit
 
 # 候補一覧のファイル名末尾にファイル種別を表す記号をつける
 setopt LIST_TYPES
@@ -82,7 +80,7 @@ local BLUE=$'%F{blue}'
 local DEFAULT=$'%{\e[1;m%}'
 local VCS='%1(v|%F{yellow}%1v%F{green} |)'
 
-PROMPT=$RED"%(!.#.$) "$DEFAULT
+PROMPT="%(!.#.$) "
 RPROMPT=$GREEN"$VCS [%~]"$DEFAULT
 SPROMPT="correct: %R -> %r ? " 
 
@@ -319,3 +317,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+
+# rakeでzsh: no matches found http://qiita.com/kwgch/items/445a230b3ae9ec246fcb
+setopt nonomatch
