@@ -161,6 +161,7 @@ alias glg='git logg | head'
 alias gst='git status -s -b'
 alias gd='git diff --color -w'
 alias gst='git status -s -b'
+alias md5sum='md5 -r'
 
 # Suffix Alias
 alias -s tar.gz="tar xvzf"
