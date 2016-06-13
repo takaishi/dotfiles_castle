@@ -80,7 +80,7 @@ local BLUE=$'%F{blue}'
 local DEFAULT=$'%{\e[1;m%}'
 local VCS='%1(v|%F{yellow}%1v%F{green} |)'
 
-PROMPT="%(!.#.$) "
+PROMPT="%m %(!.#.$) "
 RPROMPT=$GREEN"$VCS [%~]"$DEFAULT
 SPROMPT="correct: %R -> %r ? " 
 
