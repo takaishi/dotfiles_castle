@@ -1,6 +1,6 @@
 #/bin/zsh
-if [ ! -e ~/.zplug/zplug ]; then
-  curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
+if [ ! -e $HOME/.zplug ]; then
+  curl -sL zplug.sh/installer | zsh
 fi
 
 source ~/.zplug/zplug
