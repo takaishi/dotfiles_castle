@@ -1,5 +1,5 @@
 #!/bin/zsh
-export PATH=~/bin:~/local/bin:$PATH
+export PATH=~/bin:~/local/bin:/usr/local/bin:$PATH
 export INFOPATH=~/.emacs.d/info
 export DOCKER_HOST="tcp://localhost:4242"
 
