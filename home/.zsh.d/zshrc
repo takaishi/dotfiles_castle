@@ -9,6 +9,9 @@ zplug "b4b4r07/enhancd"
 source $HOME/.zplug/repos/b4b4r07/enhancd/init.sh
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "b4b4r07/emoji-cli"
+source $HOME/.zplug/repos/b4b4r07/emoji-cli/emoji-cli.zsh
+zplug "sorin-ionescu/prezto"
 
 autoload -Uz add-zsh-hook
 autoload -Uz colors
@@ -81,9 +84,9 @@ local BLUE=$'%F{blue}'
 local DEFAULT=$'%{\e[1;m%}'
 local VCS='%1(v|%F{yellow}%1v%F{green} |)'
 
-PROMPT="%m %(!.#.$) "
-RPROMPT=$GREEN"$VCS [%~]"$DEFAULT
-SPROMPT="correct: %R -> %r ? " 
+# PROMPT="%m %(!.#.$) "
+# RPROMPT=$GREEN"$VCS [%~]"$DEFAULT
+# SPROMPT="correct: %R -> %r ? " 
 
 setopt transient_rprompt
 
@@ -161,6 +164,11 @@ alias gst='git status -s -b'
 alias gd='git diff --color -w'
 alias gst='git status -s -b'
 alias md5sum='md5 -r'
+alias be='bundle exec'
+alias mine='open -a Rubymine'
+alias gl='cd $(ghq root)/$(ghq list | peco)'
+alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+
 
 # Suffix Alias
 alias -s tar.gz="tar xvzf"
@@ -173,11 +181,11 @@ alias -s lg='| grep'
 stty -istrip
 bindkey -e
 bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^S' history-incremental-pattern-search-forward
+#bindkey '^S' history-incremental-pattern-search-forward
 bindkey "\M-C-f" forward-word
 bindkey "\M-C-b" backward-word
 bindkey '\M-w' backward-kill-word
-
+bindkey '^s' emoji::cli
 
 REPORTTIME=10
 
@@ -321,3 +329,9 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 
 # rakeでzsh: no matches found http://qiita.com/kwgch/items/445a230b3ae9ec246fcb
 setopt nonomatch
+
+#function git_current_branch_name()
+#{
+#    git branch | grep '^\*' | sed 's/^\* *//'
+#}
+#alias -g B='"$(git_current_branch_name)"'
