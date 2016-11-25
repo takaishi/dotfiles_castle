@@ -78,22 +78,22 @@ zstyle ':completion:*:git' command 'git --no-pager log -n 10 --pretty=format:"%h
 # プロンプト
 ############################################################
 
-local GREEN=$'%F{green}'
-local RED=$'%F{red}'
-local BLUE=$'%F{blue}'
-local DEFAULT=$'%{\e[1;m%}'
-local VCS='%1(v|%F{yellow}%1v%F{green} |)'
+# local GREEN=$'%F{green}'
+# local RED=$'%F{red}'
+# local BLUE=$'%F{blue}'
+# local DEFAULT=$'%{\e[1;m%}'
+# local VCS='%1(v|%F{yellow}%1v%F{green} |)'
 
 # PROMPT="%m %(!.#.$) "
 # RPROMPT=$GREEN"$VCS [%~]"$DEFAULT
 # SPROMPT="correct: %R -> %r ? " 
 
-setopt transient_rprompt
+# setopt transient_rprompt
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats '%c%u%b'
-zstyle ':vcs_info:git:*' actionformats '%c%u%b|%a'
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:git:*' formats '%c%u%b'
+# zstyle ':vcs_info:git:*' actionformats '%c%u%b|%a'
 
 #カレントディレクトリ/コマンド記録
 #local _cmd=''
@@ -103,30 +103,30 @@ zstyle ':vcs_info:git:*' actionformats '%c%u%b|%a'
 #  _lastdir="$PWD"
 #}
 #git情報更新
-update_vcs_info() {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-
-
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats '%r'
+# update_vcs_info() {
+#   psvar=()
+#   LANG=en_US.UTF-8 vcs_info
+#   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+# }
+# 
+# 
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' enable git svn
+# zstyle ':vcs_info:*' formats '%r'
 
 #カレントディレクトリ変更時/git関連コマンド実行時に情報更新
-precmd() {
-
-LANG=en_US.UTF-8 vcs_info
-  [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
-
-  _r=$?
-  case "${_cmd}" in
-    git*|stg*) update_vcs_info ;;
-    *) [ "${_lastdir}" != "$PWD" ] && update_vcs_info ;;
-  esac
-  return $_r
-}
+# jprecmd() {
+# 
+# LANG=en_US.UTF-8 vcs_info
+#   [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
+# 
+#   _r=$?
+#   case "${_cmd}" in
+#     git*|stg*) update_vcs_info ;;
+#     *) [ "${_lastdir}" != "$PWD" ] && update_vcs_info ;;
+#   esac
+#   return $_r
+# }
 
 # Set Shell Options
 setopt auto_cd
