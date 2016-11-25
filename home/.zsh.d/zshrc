@@ -189,11 +189,11 @@ bindkey '^s' emoji::cli
 
 REPORTTIME=10
 
-if [ -e $HOME/.emacs.d/shellenv.el ]; then
-  perl -wle \
-    'do { print qq/(setenv "$_" "$ENV{$_}")/ if exists $ENV{$_} } for @ARGV' \
-    PATH > ~/.emacs.d/shellenv.el
-fi
+# if [ -e $HOME/.emacs.d/shellenv.el ]; then
+#   perl -wle \
+#     'do { print qq/(setenv "$_" "$ENV{$_}")/ if exists $ENV{$_} } for @ARGV' \
+#     PATH > ~/.emacs.d/shellenv.el
+# fi
 
 function chpwd() { ls -F }
 
@@ -300,13 +300,6 @@ function agvim() {
     vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-  export PATH=${PYENV_ROOT}/bin:$PATH
-  eval "$(pyenv init -)"
-fi
-
-
 hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
 zstyle ':completion:*:hosts' hosts $hosts
 
@@ -322,7 +315,7 @@ function s() {
   ' ~/.ssh/config | sort | peco)
 }
 # alias s='ssh $(grep -E '^Host[[:space:]]+[^*]' ~/.ssh/config|peco|awk "{print \$2}")'
-export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
 
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
