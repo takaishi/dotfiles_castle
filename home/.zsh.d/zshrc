@@ -3,6 +3,15 @@ if [ ! -e $HOME/.zplug ]; then
   curl -sL zplug.sh/installer | zsh
 fi
 
+if [! -e $HOME/.zprezto ]; then
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+  setopt EXTENDED_GLOB
+  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^(README.md|zshenv|zshrc); do  
+    echo ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  done
+fi
+
 source $HOME/.zplug/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "b4b4r07/enhancd"
