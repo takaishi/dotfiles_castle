@@ -7,7 +7,7 @@ if [! -e $HOME/.zprezto ]; then
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
   setopt EXTENDED_GLOB
-  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^(README.md|zshenv|zshrc); do  
+  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^(README.md|zshenv|zshrc|zpreztorc); do  
     echo ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
   done
 fi
