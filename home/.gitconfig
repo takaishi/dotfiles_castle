@@ -43,6 +43,7 @@
   filetrail = git log --follow -p -w
   mergetrail = log --ancestry-path --merges
   unmerged = diff --name-only --diff-filter=U	
+  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
@@ -55,6 +56,7 @@
 	autosquash = false
 [core]
 	excludesfile = /Users/r_takaishi/.gitignore_global
+	editor = vim -c \"set fenc=utf-8\"
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

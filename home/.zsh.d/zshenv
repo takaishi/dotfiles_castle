@@ -1,33 +1,41 @@
 #!/bin/zsh
-export PATH=~/bin:~/local/bin:$PATH
-export INFOPATH=~/.emacs.d/info
-export DOCKER_HOST="tcp://localhost:4242"
 
+export PATH=~/bin:~/local/bin:/usr/local/bin:$PATH
+
+#export INFOPATH=~/.emacs.d/info
+#export DOCKER_HOST="tcp://localhost:4242"
+
+export EDITOR='vim'
+
+### Tmuxinator
 if [ -e $HOME/.tmuxinator/scripts/tmuxinator ]; then
     source $HOME/.tmuxinator/scripts/tmuxinator
 fi
 
+### Go (gvm)
 if [ -e $HOME/.gvm/scripts/gvm ]; then
     source $HOME/.gvm/scripts/gvm
     export GOPATH=$HOME
 fi
+export GOPATH=$HOME
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-if [ -e $HOME/.rvm/scripts/rvm ]; then
-    source ~/.rvm/scripts/rvm
+
+### Python (pyenv)
+if which pyenv > /dev/null; then
+  eval "$(pyenv init -)";
+fi
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
 fi
 
-export PATH=/usr/local/sbin:$PATH
-export PATH=~/Library/Python/2.7/bin:$PATH
+### Ruby (rbenv)
+if [ -e $HOME/.rbenv ]; then
+  export PATH="$HOME/.rbenv/shims:$PATH"
+  eval "$(rbenv init - zsh)";
+fi
 
-export EDITOR='vim'
-
-
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-export PYENV_ROOT=/usr/local/var/pyenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-export GOPATH=$HOME/src
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export SLACK_API_TOKEN=xoxp-3358917349-4267516680-18724788512-513308ca3f
 
@@ -35,4 +43,11 @@ export DOCKER_HOST=tcp://192.168.99.100:2376
 export DOCKER_CERT_PATH=${HOME}/.docker/machine/machines/dinghy
 export DOCKER_TLS_VERIFY=1
 export DOCKER_MACHINE_NAME=dinghy
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+
+export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
+
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
