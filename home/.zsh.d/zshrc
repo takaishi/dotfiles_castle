@@ -46,13 +46,13 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 # ヒストリの保存先
-HISTFILE=$HOME/.zhistry
+export HISTFILE=$HOME/.zhistry
 
 # メモリ内に保持するヒストリ数
-HISTSIZE=500000
+export HISTSIZE=500000
 
 # 保存するヒストリ数
-SAVEHIST=500000
+export SAVEHIST=500000
 
 # ヒストリにコマンド入力時刻と実行時間も記録する
 setopt EXTENDED_HISTORY
