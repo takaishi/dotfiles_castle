@@ -1,3 +1,4 @@
+set -U fish_user_paths ~/bin $fish_user_paths
 
 if not test -e ~/.config/fish/functions/fisher.fish
   curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
