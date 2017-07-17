@@ -337,3 +337,8 @@ setopt nonomatch
 #    git branch | grep '^\*' | sed 's/^\* *//'
 #}
 #alias -g B='"$(git_current_branch_name)"'
+
+if [ -e $HOME/.dein ]; then
+  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
+  sh /tmp/installer.sh $HOME/.dein
+fi
