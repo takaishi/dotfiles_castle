@@ -3,6 +3,8 @@ eval "$(rbenv init -)"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export EDITOR=vim
 
 ##
 # History
