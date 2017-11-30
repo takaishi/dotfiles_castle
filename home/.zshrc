@@ -70,3 +70,5 @@ done
 
 autoload -U compinit
 compinit -u
+
+eval "$(direnv hook zsh)"

@@ -9,8 +9,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
-	name = TAKAISHI Ryo 髙石 諒 アルパカ
-	email = r_takaishi@pepabo.com
+       name = r_takaishi
+       email = ryo.takaishi.0@gmail.com
 [alias]
         delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-
