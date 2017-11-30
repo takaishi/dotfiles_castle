@@ -58,5 +58,13 @@ else
     echo "peco is not found."
 fi
 
+function _peco_ssh () {
+  peco | xargs -I{} bash -c "ssh {} < /dev/tty";
+}
+
+for file in `ls $HOME/.zsh.d`; do
+  source $HOME/.zsh.d/$file
+done
+
 autoload -U compinit
 compinit -u
