@@ -25,6 +25,11 @@ setopt bang_hist                # !keyword
 alias gl='cd $(ghq root)/$(ghq list | peco)'
 alias gd='git diff --color -w'
 
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
 
 # zshにpeco + ghqを導入したメモ - Qiita - http://qiita.com/ysk_1031/items/8cde9ce8b4d0870a129d
 #
