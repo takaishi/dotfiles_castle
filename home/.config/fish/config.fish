@@ -3,6 +3,16 @@ function fish_user_key_bindings
     bind \cr peco_select_history
 end
 
+# alias
+alias gl "cd (ghq root)/(ghq list | peco)"
+alias gd "git diff --color -w"
+
+if test (which colordiff)
+  alias diff "colordiff -u"
+else
+  alias diff "diff -u"
+end
+
 
 
 if type -q direnv
