@@ -1,3 +1,5 @@
+set -x PATH $HOME/.rbenv/bin $PATH
+
 #peco
 function fish_user_key_bindings
     bind \cr peco_select_history
@@ -24,6 +26,10 @@ else
   echo "Install direnv first! Check http://direnv.net" ^&1
 end
 
+function history-merge --on-event fish_preexec
+  history --save
+  history --merge
+end
 
 function peco_sync_select_history
   history-merge
