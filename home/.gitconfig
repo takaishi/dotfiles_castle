@@ -13,3 +13,4 @@
        email = ryo.takaishi.0@gmail.com
 [alias]
         delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+        co = checkout
