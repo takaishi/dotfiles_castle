@@ -1,6 +1,7 @@
 set -x PATH $HOME/.rbenv/bin $PATH
 
 # alias
+alias g git
 alias gd "git diff --color -w"
 alias j "z"
 alias l "exa -l"
