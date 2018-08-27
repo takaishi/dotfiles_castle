@@ -58,7 +58,7 @@ function get-prompt-info() {
     git_info=""
   fi
   local current_pane_path="#[bg=black,fg=cyan] #[underscore]$current_pane_path #[default]"
-  echo "${current_pane_path}${git_info}"
+  echo "${current_pane_path}${git_info}" | sed -E "s|$HOME|~|"
 }
 
 function main() {
