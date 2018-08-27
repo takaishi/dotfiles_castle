@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# original code is https://github.com/arks22/dotfiles/blob/162020cdafa60737d106b2d0d5fff7263850619e/bin/tmux-pane-border
 
 function get-ssh-info {
   local current_pane_pid="$1"
