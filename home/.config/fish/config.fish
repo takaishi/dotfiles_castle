@@ -1,7 +1,6 @@
 set -x PATH $HOME/.rbenv/bin $PATH
 
 # alias
-alias gl "cd (ghq root)/(ghq list | peco)"
 alias gd "git diff --color -w"
 
 if test (which colordiff)
