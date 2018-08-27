@@ -34,3 +34,9 @@ function refresh-tmux --on-event fish_preexec
     tmux refresh-client -S
   end
 end
+
+# fzf
+set -U FZF_LEGACY_KEYBINDINGS 0
+
+# fish-ghq
+set -U GHQ_SELECTOR peco
