@@ -39,3 +39,9 @@ end
 function fish_user_key_bindings
   bind \cr 'peco_sync_select_history (commandline -b)'
 end
+
+function refresh-tmux --on-event fish_preexec
+  if test -n $TMUX
+    tmux refresh-client -S
+  end
+end
