@@ -2,6 +2,7 @@ set -x PATH $HOME/.rbenv/bin $PATH
 
 # alias
 alias gd "git diff --color -w"
+alias j "z"
 
 if test (which colordiff)
   alias diff "colordiff -u"
