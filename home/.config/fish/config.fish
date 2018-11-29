@@ -1,4 +1,7 @@
 set -x PATH $HOME/.rbenv/bin $PATH
+set -x PATH $HOME/bin $PATH
+set -x GOPATH $HOME
+set -x GO111MODULE on
 
 # alias
 alias git hub
