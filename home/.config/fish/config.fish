@@ -41,6 +41,11 @@ function refresh-tmux --on-event fish_preexec
   end
 end
 
+function export
+    set -l s (string split -m1 = $argv)
+    set -xg $s
+end
+
 # fzf
 set -U FZF_LEGACY_KEYBINDINGS 1
 
