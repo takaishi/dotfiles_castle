@@ -11,6 +11,10 @@ alias gd "git diff --color -w"
 alias j "z"
 alias l "exa -l"
 
+alias k kubectl
+alias kg "kubectl get"
+alias kd "kubectl describe"
+
 if test (which colordiff)
   alias diff "colordiff -u"
 else
