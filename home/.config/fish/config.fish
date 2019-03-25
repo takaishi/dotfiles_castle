@@ -40,11 +40,6 @@ function peco_sync_select_history
   peco_select_history $argv
 end
 
-function refresh-tmux --on-event fish_preexec
-  if test -n $TMUX
-    tmux refresh-client -S
-  end
-end
 
 function export
     set -l s (string split -m1 = $argv)
