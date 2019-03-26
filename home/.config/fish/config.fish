@@ -53,7 +53,8 @@ set -U FZF_LEGACY_KEYBINDINGS 1
 set -U GHQ_SELECTOR peco
 
 if [ -f '$HOME/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '$HOME/google-cloud-sdk/path.fish.inc'; else; . '$HOME/google-cloud-sdk/path.fish.inc'; end; end
-
-bass source ~/.google-cloud-sdk/path.bash.inc
-bass source ~/.google-cloud-sdk/completion.bash.inc
+if [ -f '$HOME/.google-cloud-sdk' ]; 
+  bass source ~/.google-cloud-sdk/path.bash.inc
+  bass source ~/.google-cloud-sdk/completion.bash.inc
+end
 
