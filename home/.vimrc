@@ -185,8 +185,8 @@ nnoremap tn :setl number! number?<CR>
 nnoremap x "_x
 
 " Ctrl+d または Ctrl+lでEsc
-inoremap <C-d> <Esc>
-vnoremap <C-l> <Esc>
+" inoremap <C-d> <Esc>
+" vnoremap <C-l> <Esc>
 
 " Commandモードの履歴移動
 cnoremap <C-k> <Up>
@@ -281,7 +281,7 @@ endif
 "let s:vimproc_dll_path = '~/.vim/bundle/vimproc/autoload/vimproc_mac.so'
 
 " 保存時に空白削除
-nnoremap <C-d> :FixWhitespace <CR>
+" nnoremap <C-d> :FixWhitespace <CR>
 
 "---------------------------------------------------------------"
 "pt"
@@ -360,7 +360,7 @@ autocmd FileType c ClangFormatAutoEnable
 
 command! -range GT GoTests
 nnoremap <silent> ss :<C-u>GoFillStruct<CR>
-nnoremap <silent> gg :<C-u>Gbrowse<CR>
+" nnoremap <silent> gg :<C-u>Gbrowse<CR>
 set noautochdir
 "autocmd BufEnter * silent! lcd %:p:h
 nnoremap <silent> qq  :<C-u>q<CR>
