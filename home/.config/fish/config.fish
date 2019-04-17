@@ -3,6 +3,13 @@ set -x PATH $HOME/bin $PATH
 set -x PATH /usr/local/kubebuilder/bin/ $PATH
 set -x GOPATH $HOME
 set -x GO111MODULE on
+set -x PATH /usr/local/opt/libxml2/bin $PATH
+set -x LANG en_US.UTF-8
+
+set -x LDFLAGS -L/usr/local/opt/libxml2/lib
+set -x CPPFLAGS -I/usr/local/opt/libxml2/include
+
+set -x PKG_CONFIG_PATH /usr/local/opt/libxml2/lib/pkgconfig
 
 # alias
 alias git hub
