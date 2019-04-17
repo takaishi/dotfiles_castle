@@ -41,6 +41,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'buoto/gotests-vim', { 'for': ['go'] }
   Plug 'moll/vim-node', { 'for': ['js'] }
   Plug 'zchee/deoplete-go', { 'for': ['go'] }
+  Plug 'prabirshrestha/async.vim', { 'for': ['go'] }
+  Plug 'prabirshrestha/vim-lsp', { 'for': ['go'] }
+
 
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -274,6 +277,13 @@ if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
 
+if executable('bingo')
+      au User lsp_setup call lsp#register_server({
+              \ 'name': 'bingo',
+              \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
+              \ 'whitelist': ['go'],
+              \ })
+endif
 
 "---------------------------------------------------------------"
 "vimproc"
@@ -435,3 +445,4 @@ function! LightlineTabFilename(n) abort
   let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
   return _ !=# '' ? _ : '[No Name]'
 endfunction
+
