@@ -35,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/vim-clang-format'
   Plug 'vim-scripts/gtags.vim'
   Plug 'vim-jp/vital.vim'
-  Plug 'zerowidth/vim-copy-as-rtf'
   Plug 'vim-ruby/vim-ruby', { 'for': ['rb', 'erb'] }
   Plug 'fatih/vim-go', { 'for': ['go'] }
   Plug 'buoto/gotests-vim', { 'for': ['go'] }
@@ -44,6 +43,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'prabirshrestha/async.vim', { 'for': ['go'] }
   Plug 'prabirshrestha/vim-lsp', { 'for': ['go'] }
 
+  if has("mac")
+    Plug 'zerowidth/vim-copy-as-rtf'
+  endif
 
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
