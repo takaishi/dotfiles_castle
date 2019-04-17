@@ -40,8 +40,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'buoto/gotests-vim', { 'for': ['go'] }
   Plug 'moll/vim-node', { 'for': ['js'] }
   Plug 'zchee/deoplete-go', { 'for': ['go'] }
-  Plug 'prabirshrestha/async.vim', { 'for': ['go'] }
-  Plug 'prabirshrestha/vim-lsp', { 'for': ['go'] }
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
 
   if has("mac")
     Plug 'zerowidth/vim-copy-as-rtf'
