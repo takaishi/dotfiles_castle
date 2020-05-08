@@ -1,29 +1,35 @@
-[include]
-    path = .gitconfig.local
-
 [ghq]
-    root = ~/src
+  root = ~/src
+
 [core]
-    excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+
 [user]
-       name = r_takaishi
-       email = ryo.takaishi.0@gmail.com
+  name = r_takaishi
+  email = ryo.takaishi.0@gmail.com
+
 [alias]
-        delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-        a = add
-        cl = clone
-        cm = commit
-        co = checkout
-        cob = checkout -b
-        d = diff
-        gpush = push origin HEAD
-        p = push
-        st = status
+  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+  a = add
+  cl = clone
+  cm = commit
+  co = checkout
+  cob = checkout -b
+  d = diff
+  gpush = push origin HEAD
+  p = push
+  st = status
+  sw = switch
+  re = restore
+
 [fetch]
-	prune = true
+  prune = true
+
+[include]
+  path = ~/.gitconfig.local
