@@ -54,10 +54,11 @@ function export
 end
 
 # fzf
+set -x FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 set -U FZF_LEGACY_KEYBINDINGS 1
 
 # fish-ghq
-set -U GHQ_SELECTOR peco
+set -U GHQ_SELECTOR fzf
 
 if test -e $HOME/google-cloud-sdk
   bass source ~/google-cloud-sdk/path.bash.inc
