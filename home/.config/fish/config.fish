@@ -65,3 +65,5 @@ if test -e $HOME/google-cloud-sdk
   set -x PATH $HOME/google-cloud-sdk/bin $PATH
 end
 
+source ~/.config/fish/fubectl.fish
+
