@@ -38,8 +38,8 @@ alias j "z"
 alias l "exa -l"
 
 alias k kubectl
-alias kg "kubectl get"
-alias kd "kubectl describe"
+alias kssh "kelm --namespace default --kind nodes --action ssh"
+alias kstern "kelm --kind deployments --action stern"
 
 if test (which colordiff)
   alias diff "colordiff -u"
