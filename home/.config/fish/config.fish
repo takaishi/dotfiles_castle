@@ -9,6 +9,9 @@ set -x PATH $HOME/Library/Python/3.7/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x PATH /usr/local/opt/gnu-time/libexec/gnubin $PATH
 set -x PATH $HOME/.krew/bin $PATH
+set -x PATH $HOME/.cargo/bin $PATH
+set -x PATH $HOME/flutter/bin $PATH
+set -x PATH /usr/local/bin $PATH
 
 
 
