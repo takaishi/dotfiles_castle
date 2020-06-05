@@ -19,8 +19,8 @@ set -x GOPATH $HOME
 set -x GO111MODULE on
 set -x PATH /usr/local/opt/libxml2/bin $PATH
 set -x LANG en_US.UTF-8
-set -x PATH /usr/local/opt/avr-gcc@8/bin:$PATH
-set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+set -x PATH /usr/local/opt/avr-gcc@8/bin $PATH
+set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 set -x DYLD_LIBRARY_PATH /usr/local/Cellar/openssl/1.0.2s/lib
 
 
