@@ -79,7 +79,7 @@ function __fubectl_kex -d 'execute command in container'
     set -l pod (echo $arg_pair | awk '{print $2}')
     set -l containers_out (echo "$arg_pair" | xargs kubectl get po -o=jsonpath='{.spec.containers[*].name}' -n)
     set -l container_choosen (echo "$containers_out" |  tr ' ' "\n" | __fubectl_inline_fzf_nh)
-    kubectl -n "$namespace" exec "$pod" -it -c "$container_choosen" bash
+    kubectl -n "$namespace" exec "$pod" -it -c "$container_choosen" $argv[1]
 end
 
 alias ka   __fubectl_ka
