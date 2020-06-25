@@ -23,6 +23,10 @@ function __fubectl_kw -d 'watch pods in namespaces'
     watch kubectl get pods
 end
 
+function __fubectl_kw1 -d 'watch pods in namespaces'
+    watch -n 1 kubectl get pods
+end
+
 function __fubectl_kdes -d 'describe resource'
     set -l kind $argv[1]
     [ -z "$kind" ] && printf "kdes: missing argument.\nUsage: kdes RESOURCE\n" && return 255
@@ -81,6 +85,7 @@ end
 alias ka   __fubectl_ka
 alias kall __fubectl_kall
 alias kw   __fubectl_kw
+alias kw1  __fubectl_kw1
 alias kdes __fubectl_kdes
 alias kget __fubectl_kget
 alias klog __fubectl_klog
