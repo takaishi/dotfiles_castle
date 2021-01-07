@@ -309,9 +309,6 @@ live_config_reload: true
 #   - (Windows) powershell
 shell:
   program: /usr/local/bin/fish
-  args:
-    - -c
-    - "tmux -u"
 
 # Windows 10 ConPTY backend (Windows only)
 #
