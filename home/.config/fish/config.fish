@@ -67,3 +67,19 @@ end
 
 source ~/.config/fish/fubectl.fish
 
+if not test -e $HOME/.krew/bin/kubectl-krew
+  begin
+    set -x; set temp_dir (mktemp -d); cd "$temp_dir" &&
+    curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
+    tar zxvf krew.tar.gz &&
+    set KREWNAME krew-(uname | tr '[:upper:]' '[:lower:]')_(uname -m | sed -e 's/x86_64/amd64/' -e 's/arm.*$/arm/') &&
+    ./$KREWNAME install krew &&
+    set -e KREWNAME; set -e temp_dir
+    kubectl krew install ctx
+    kubectl krew install ns
+    cd $HOME
+  end
+end
+
+bind \cx 'kubectl ctx'
+bind \cn 'kubectl ns'
