@@ -448,3 +448,5 @@ function! LightlineTabFilename(n) abort
   return _ !=# '' ? _ : '[No Name]'
 endfunction
 
+
+set mmp=5000
