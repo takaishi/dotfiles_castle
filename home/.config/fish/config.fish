@@ -1,7 +1,7 @@
 #!/usr/local/bin/fish
 #
+status --is-interactive; and source (anyenv init -|psub)
 
-set -x PATH $HOME/.rbenv/bin $PATH
 set -x PATH $HOME/bin $PATH
 set -x PATH /usr/local/kubebuilder/bin/ $PATH
 set -x PATH /usr/local/opt/python/libexec/bin $PATH
@@ -12,6 +12,7 @@ set -x PATH $HOME/.krew/bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/flutter/bin $PATH
 set -x PATH /usr/local/bin $PATH
+set -x PATH $HOME/.anyenv/bin $PATH
 
 
 
