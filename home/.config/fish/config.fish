@@ -23,6 +23,8 @@ set -x PATH /usr/local/opt/avr-gcc@8/bin $PATH
 set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 set -x DYLD_LIBRARY_PATH /usr/local/Cellar/openssl/1.0.2s/lib
 
+set -x QMK_HOME $HOME/src/github.com/takaishi/qmk_firmware
+
 
 set -x LDFLAGS -L/usr/local/opt/libxml2/lib
 set -x CPPFLAGS -I/usr/local/opt/libxml2/include
@@ -83,3 +85,21 @@ end
 
 bind \cx 'kubectl ctx'
 bind \cn 'kubectl ns'
+
+
+
+# port from https://ten-snapon.com/archives/2622
+function __fzf_git_branch -d ''
+  # commiterdate:relativeを commiterdate:localに変更すると普通の時刻表示
+  set -l selected_line (git for-each-ref --format='%(refname:short) | %(committerdate:relative) | %(committername) | %(subject)' --sort=-committerdate refs/heads refs/remotes \
+        | column -t -s '|' \
+        | grep -v 'origin' \
+        | fzf \
+        | head -n 1 \
+        | awk '{print $1}')
+  if [ -n "$selected_line" ]
+    git checkout {$selected_line}
+  end
+end
+
+bind \cb '__fzf_git_branch'
