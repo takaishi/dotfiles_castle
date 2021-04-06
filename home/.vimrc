@@ -12,49 +12,50 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-plug',
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-fugitive'
-  Plug 'henrik/vim-open-url'
-  Plug 'bling/vim-airline'
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'Shougo/neco-vim'
-  Plug 'Shougo/vimshell'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'Shougo/neomru.vim'
-  Plug 'Shougo/unite.vim'
-  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-  Plug 'Shougo/vimfiler.vim'
-  Plug 'itchyny/lightline.vim'
-  Plug 'bronson/vim-trailing-whitespace'
-  Plug 'jwhitley/vim-matchit'
-  Plug 'thinca/vim-quickrun'
-  Plug 'tyru/open-browser.vim'
-  Plug 'soramugi/auto-ctags.vim'
-  Plug 'kana/vim-submode'
-  Plug 'rhysd/vim-clang-format'
-  Plug 'vim-scripts/gtags.vim'
-  Plug 'vim-jp/vital.vim'
-  Plug 'vim-ruby/vim-ruby', { 'for': ['rb', 'erb'] }
-  Plug 'fatih/vim-go', { 'for': ['go'] }
-  Plug 'buoto/gotests-vim', { 'for': ['go'] }
-  Plug 'moll/vim-node', { 'for': ['js'] }
-  Plug 'zchee/deoplete-go', { 'for': ['go'] }
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/vim-lsp'
+  "Plug 'tpope/vim-endwise'
+  "Plug 'tpope/vim-fugitive'
+  "Plug 'henrik/vim-open-url'
+  "Plug 'bling/vim-airline'
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'Shougo/neco-vim'
+  "Plug 'Shougo/vimshell'
+  "Plug 'SirVer/ultisnips'
+  "Plug 'honza/vim-snippets'
+  "Plug 'Shougo/neomru.vim'
+  "Plug 'Shougo/unite.vim'
+  "Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  "Plug 'Shougo/vimfiler.vim'
+  "Plug 'itchyny/lightline.vim'
+  "Plug 'bronson/vim-trailing-whitespace'
+  "Plug 'jwhitley/vim-matchit'
+  "Plug 'thinca/vim-quickrun'
+  "Plug 'tyru/open-browser.vim'
+  "Plug 'soramugi/auto-ctags.vim'
+  "Plug 'kana/vim-submode'
+  "Plug 'rhysd/vim-clang-format'
+  "Plug 'vim-scripts/gtags.vim'
+  "Plug 'vim-jp/vital.vim'
+  "Plug 'vim-ruby/vim-ruby', { 'for': ['rb', 'erb'] }
+  "Plug 'fatih/vim-go', { 'for': ['go'] }
+  "Plug 'buoto/gotests-vim', { 'for': ['go'] }
+  "Plug 'moll/vim-node', { 'for': ['js'] }
+  "Plug 'zchee/deoplete-go', { 'for': ['go'] }
+  "Plug 'prabirshrestha/async.vim'
+  "Plug 'prabirshrestha/vim-lsp'
+  Plug 'dag/vim-fish'
 
   if has("mac")
     Plug 'zerowidth/vim-copy-as-rtf'
   endif
 
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    "pip3 install --user pynvim
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
+  "if has('nvim')
+  "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "else
+  "  "pip3 install --user pynvim
+  "  Plug 'Shougo/deoplete.nvim'
+  "  Plug 'roxma/nvim-yarp'
+  "  "Plug 'roxma/vim-hug-neovim-rpc'
+  "endif
   let g:deoplete#enable_at_startup = 1
 
 call plug#end()
