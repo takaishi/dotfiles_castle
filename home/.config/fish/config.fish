@@ -103,3 +103,14 @@ function __fzf_git_branch -d ''
 end
 
 bind \cb '__fzf_git_branch'
+
+function __fzf_z_list -d ''
+  eval "z -l | fzf | sed 's/[\t ]\+/\t/g' | cut -f2" | read -l selected_dir
+  if not test -z "$selected_dir"
+    builtin cd "$selected_dir"
+    commandline -t ""
+  end
+  commandline -f repaint
+end
+
+bind \cq '__fzf_z_list'
