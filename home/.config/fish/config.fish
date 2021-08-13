@@ -1,6 +1,5 @@
 #!/usr/local/bin/fish
 #
-status --is-interactive; and source (anyenv init -|psub)
 
 set -x PATH $HOME/bin $PATH
 set -x PATH /usr/local/kubebuilder/bin/ $PATH
@@ -12,7 +11,6 @@ set -x PATH $HOME/.krew/bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/flutter/bin $PATH
 set -x PATH /usr/local/bin $PATH
-set -x PATH $HOME/.anyenv/bin $PATH
 
 
 
@@ -68,6 +66,11 @@ if test -e $HOME/google-cloud-sdk
   set -x PATH $HOME/google-cloud-sdk/bin $PATH
 end
 
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
 source ~/.config/fish/fubectl.fish
 
 if not test -e $HOME/.krew/bin/kubectl-krew
@@ -87,8 +90,6 @@ end
 bind \cx 'kubectl ctx'
 bind \cn 'kubectl ns'
 
-
-
 # port from https://ten-snapon.com/archives/2622
 function __fzf_git_branch -d ''
   # commiterdate:relativeを commiterdate:localに変更すると普通の時刻表示
@@ -104,3 +105,23 @@ function __fzf_git_branch -d ''
 end
 
 bind \cb '__fzf_git_branch'
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/r_takaishi/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/r_takaishi/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+
+function dotenv --description 'Load environment variables from .env file'
+  set -l envfile ".env"
+  if [ (count $argv) -gt 0 ]
+    set envfile $argv[1]
+  end
+
+  if test -e $envfile
+    for line in (cat $envfile)
+      set -xg (echo $line | cut -d = -f 1) (echo $line | cut -d = -f 2-)
+    end
+  end
+end
+
+
