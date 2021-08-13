@@ -106,7 +106,6 @@ end
 
 bind \cb '__fzf_git_branch'
 
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/r_takaishi/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/r_takaishi/Downloads/google-cloud-sdk/path.fish.inc'; end
 
@@ -124,4 +123,13 @@ function dotenv --description 'Load environment variables from .env file'
   end
 end
 
+function __fzf_z_list -d ''
+  eval "z -l | fzf | sed 's/[\t ]\+/\t/g' | cut -f2" | read -l selected_dir
+  if not test -z "$selected_dir"
+    builtin cd "$selected_dir"
+    commandline -t ""
+  end
+  commandline -f repaint
+end
 
+bind \cq '__fzf_z_list'
