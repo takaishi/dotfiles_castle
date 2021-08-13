@@ -3,6 +3,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
+	autocrlf = input
 
 [filter "lfs"]
   required = true

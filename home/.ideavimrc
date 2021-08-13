@@ -39,7 +39,7 @@ map <C-o> <Action>(Back)
 map <C-i> <Action>(Forward)
 
 " code editing
-nnoremap r :<C-u>action RenameElement<CR>
+" nnoremap r :<C-u>action RenameElement<CR>
 nnoremap q :<C-u>action ShowIntentionActions<CR>
 nnoremap == :<C-u>action ReformatCode<CR>
 vnoremap == :<C-u>action ReformatCode<CR>
