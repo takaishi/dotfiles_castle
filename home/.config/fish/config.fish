@@ -4,7 +4,7 @@ switch (uname -m)
 case x86_64
   set HOMEBREW_DIR /usr/local
 case arm64
-  set HOMEBREW_DIR /ope/homebrew
+  set HOMEBREW_DIR /opt/homebrew
 end
 
 set -x PATH $HOME/bin $PATH
