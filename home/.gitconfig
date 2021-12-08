@@ -12,7 +12,7 @@
   process = git-lfs filter-process
 
 [user]
-  name = r_takaishi
+  name = Ryo Takaishi
   email = ryo.takaishi.0@gmail.com
 
 [alias]
