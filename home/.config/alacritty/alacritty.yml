@@ -11,6 +11,8 @@
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   #TERM: xterm-256color
+import:
+  - ~/.config/alacritty/local.yml 
 
 window:
 
@@ -304,8 +306,8 @@ live_config_reload: true
 # Default:
 #   - (Linux/macOS) /bin/bash --login
 #   - (Windows) powershell
-shell:
-  program: /usr/local/bin/fish
+#shell:
+#  program: /opt/homebrew/bin/fish
 
 # Windows 10 ConPTY backend (Windows only)
 #
