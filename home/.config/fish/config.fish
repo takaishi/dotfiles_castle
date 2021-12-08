@@ -1,16 +1,31 @@
 #!/usr/local/bin/fish
-#
+
+switch (uname -m)
+case x86_64
+  set HOMEBREW_DIR /usr/local
+case arm64
+  set HOMEBREW_DIR /ope/homebrew
+end
 
 set -x PATH $HOME/bin $PATH
-set -x PATH /usr/local/kubebuilder/bin/ $PATH
-set -x PATH /usr/local/opt/python/libexec/bin $PATH
+set -x PATH $HOMEBREW_DIR/kubebuilder/bin/ $PATH
+set -x PATH $HOMEBREW_DIR/python/libexec/bin $PATH
 set -x PATH $HOME/Library/Python/3.7/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
-set -x PATH /usr/local/opt/gnu-time/libexec/gnubin $PATH
+set -x PATH $HOME/.nodenv/shims: $PATH
+
+set -x PATH $HOMEBREW_DIR/opt/gnu-time/libexec/gnubin $PATH
 set -x PATH $HOME/.krew/bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/flutter/bin $PATH
 set -x PATH /usr/local/bin $PATH
+set -x PATH $HOMEBREW_DIR/bin $PATH
+
+
+set -x PATH $HOMEBREW_DIR/opt/gnu-sed/libexec/gnubin $PATH
+set -x PATH $HOMEBREW_DIR/opt/coreutils/libexec/gnubin $PATH
+
+
 
 
 
@@ -18,18 +33,20 @@ set -x GOPATH $HOME
 set -x GO111MODULE on
 set -x PATH /usr/local/opt/libxml2/bin $PATH
 set -x LANG en_US.UTF-8
-set -x PATH /usr/local/opt/avr-gcc@8/bin $PATH
-set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
-set -x DYLD_LIBRARY_PATH /usr/local/Cellar/openssl/1.0.2s/lib
+set -x PATH $HOMEBREW_DIR/opt/avr-gcc@8/bin $PATH
+set -x PATH $HOMEBREW_DIR/opt/gnu-sed/libexec/gnubin $PATH
+set -x DYLD_LIBRARY_PATH $HOMEBREW_DIR/Cellar/openssl/1.0.2s/lib
 
 set -x QMK_HOME $HOME/src/github.com/takaishi/qmk_firmware
 
 
-set -x LDFLAGS -L/usr/local/opt/libxml2/lib
-set -x CPPFLAGS -I/usr/local/opt/libxml2/include
+set -gx LDFLAGS "-L/usr/local/opt/libffi/lib"
+set -gx CPPFLAGS "-I/usr/local/opt/libffi/include"
+set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
+
 
 # You can get openssl-dir to exec 'brew --prefix openssl@1.1'
-set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=/usr/local/opt/openssl@1.1
+set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=$HOMEBREW_DIR/opt/openssl@1.1
 
 # alias
 alias git hub
@@ -60,10 +77,10 @@ set -U FZF_LEGACY_KEYBINDINGS 1
 # fish-ghq
 set -U GHQ_SELECTOR fzf
 
-if test -e $HOME/google-cloud-sdk
-  bass source ~/google-cloud-sdk/path.bash.inc
-  bass source ~/google-cloud-sdk/completion.bash.inc
-  set -x PATH $HOME/google-cloud-sdk/bin $PATH
+if test -e $HOME/opt/google-cloud-sdk
+  bass source ~/opt/google-cloud-sdk/path.bash.inc
+  bass source ~/opt/google-cloud-sdk/completion.bash.inc
+  set -x PATH $HOME/opt/google-cloud-sdk/bin $PATH
 end
 
 if not functions -q fisher
@@ -133,3 +150,5 @@ function __fzf_z_list -d ''
 end
 
 bind \cq '__fzf_z_list'
+
+# The next line updates PATH for the Google Cloud SDK.
