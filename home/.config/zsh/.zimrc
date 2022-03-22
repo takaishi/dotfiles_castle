@@ -1,0 +1,4 @@
+zmodule asciiship
+zmodule olets/zsh-abbr
+zmodule fzf
+
