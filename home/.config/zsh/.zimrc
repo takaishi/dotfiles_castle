@@ -1,4 +1,5 @@
 zmodule asciiship
 zmodule olets/zsh-abbr
 zmodule fzf
+zmodule ecortinas/zsh-rbenv
 

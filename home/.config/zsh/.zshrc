@@ -47,6 +47,8 @@ WORDCHARS=${WORDCHARS//[\/]}
 
 # Set a custom prefix for the generated aliases. The default prefix is 'G'.
 #zstyle ':zim:git' aliases-prefix 'g'
+alias g='git'
+alias gd='git diff'
 
 #
 # input
@@ -167,3 +169,10 @@ function u() {
     cd "$1"
   fi
 }
+
+
+eval "$(direnv hook zsh)"
+
+
+setopt share_history
+
