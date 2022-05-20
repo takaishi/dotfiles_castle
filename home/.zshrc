@@ -72,3 +72,5 @@ autoload -U compinit
 compinit -u
 
 eval "$(direnv hook zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

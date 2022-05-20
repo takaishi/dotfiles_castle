@@ -134,7 +134,7 @@ unset key
 export HISTFILE="$XDG_DATA_HOME"/zsh/history
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 
 fzf-ghq() {
@@ -171,6 +171,7 @@ function u() {
 }
 
 
+export EDITOR=vim
 eval "$(direnv hook zsh)"
 
 
