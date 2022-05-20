@@ -49,6 +49,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 #zstyle ':zim:git' aliases-prefix 'g'
 alias g='git'
 alias gd='git diff'
+alias k='kubectl'
 
 #
 # input
@@ -170,7 +171,7 @@ function u() {
   fi
 }
 
-
+eval "$(rbenv init -)"
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 

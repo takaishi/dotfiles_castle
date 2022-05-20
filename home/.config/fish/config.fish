@@ -1,4 +1,4 @@
-#!/usr/local/bin/fish
+#!/usr/bin/env fish
 
 switch (uname -m)
 case x86_64
@@ -6,6 +6,8 @@ case x86_64
 case arm64
   set HOMEBREW_DIR /opt/homebrew
 end
+
+fish_add_path $HOMEBREW_DIR/bin
 
 set -x PATH $HOME/bin $PATH
 set -x PATH $HOMEBREW_DIR/kubebuilder/bin/ $PATH
@@ -40,9 +42,9 @@ set -x DYLD_LIBRARY_PATH $HOMEBREW_DIR/Cellar/openssl/1.0.2s/lib
 set -x QMK_HOME $HOME/src/github.com/takaishi/qmk_firmware
 
 
-set -gx LDFLAGS "-L/usr/local/opt/libffi/lib"
-set -gx CPPFLAGS "-I/usr/local/opt/libffi/include"
-set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
+set -gx LDFLAGS -L$HOMEBREW_DIR/opt/libffi/lib
+set -gx CPPFLAGS -I$HOMEBREW_DIR/opt/libffi/include
+set -gx PKG_CONFIG_PATH $HOMEBREW_DIR/opt/libffi/lib/pkgconfig
 
 
 # You can get openssl-dir to exec 'brew --prefix openssl@1.1'
