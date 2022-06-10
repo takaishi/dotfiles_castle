@@ -178,3 +178,6 @@ eval "$(direnv hook zsh)"
 
 setopt share_history
 
+eval "$(zoxide init zsh)"
+zle -N zi
+bindkey '^z' zi
